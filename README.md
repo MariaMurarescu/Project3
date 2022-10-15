@@ -81,9 +81,9 @@ In Project3, Azure DevOps is used to build a CI/CD pipeline that create and depl
   
   `sudo apt-get install npm to install NPM`
 
-24. Move to Azure portal, from Azure Portal inside the Azure Devops resource group, for Udacity Lav, we have a LAW created 
-Install the agent - ssh into the Linux agent created (myLinuxAgent)
-Goto Agents management > Linux server > Log Analytics agent instructions > Download and onboard agent for Linux
+24. Move to Azure Portal, from Azure Portal inside the Azure Devops resource group, for Udacity Lav, we have a LAW created.
+ - install the agent - ssh into the Linux agent created (myLinuxAgent)
+ - go to Agents Management > Linux server > Log Analytics Agent instructions > Download and onboard agent for Linux
 
 25. Create a new alert for the App Service
 a) From the Azure Portal go to:
@@ -92,30 +92,32 @@ b) Click on New alert rule
 c) Double-check that you have the correct resource to make the alert for.
 d) Under Condition > click Add condition
 d) Choose a condition e.g. Http 404
-e) Set the Threshold value to e.g. 1. (You will get altered after two consecutive HTTP 404 errors)
+e) Set the Threshold value to e.g. 1. 
 f) Click Done
 
 26. Create a new action group for the App Service
 
-a) In the same page, go to the Actions section, click Add action groups and then Create action group
+a) In the same page, go to the Actions section, click Add action groups and then Create action group.
 b) Give the action group a name e.g. http404
 c) Add an Action name e.g. HTTP 404 and choose Email/SMS message/Push/Voice in Action Type.
 d) Provide your email and then click OK
 
 27. Create AppServiceHTTPLogs
-Go to the App service > Diagnostic Settings > Add Diagnostic Setting, select AppServiceHTTPLogs and Send to Log Analytics Workspace created on step above and Save.
-Go back to the App service > App Service Logs. Turn on Detailed Error Messages and Failed Request Tracing > Save. Restart the app service.
+ - go to the App service > Diagnostic Settings > Add Diagnostic Setting, select AppServiceHTTPLogs and Send to Log Analytics Workspace created on step above and Save.
+ - go back to the App service > App Service Logs. Turn on Detailed Error Messages and Failed Request Tracing > Save. Restart the app service.
 
 28. Setting up Log Analytics
-Set up custom logging, in the log analytics workspace go to Settings > Custom Logs > Add + > Choose File. Select the file selenium.log > Next > Next. Put in the following paths as type Linux:
-/var/log/selenium/selenium.log
-I called it selenium_CL, select the box Apply below configuration to my Linux machines.
-Go back to Log Analytics workspace and run below query to see Logs
+ - set up custom logging, in the log analytics workspace go to Settings > Custom Logs > Add + > Choose File. 
+ - select the file selenium.log > Next > Next. 
+ - put in the following paths as type Linux: /var/log/selenium/selenium.log
+ - select the box Apply below configuration to my Linux machines
+ - go back to Log Analytics workspace and run below query to see Logs
 
-AppServiceHTTPLogs 
+`AppServiceHTTPLogs 
 |where _SubscriptionId contains "sub_id"
-| where ScStatus == '404'
-Go back to the App Service web page and navigate on the links and also generate 404 not found , example:
+| where ScStatus == '404'`
+
+ - go back to the App Service web page and navigate on the links and also generate 404 not found, example:
 https://project3-appservice.azurewebsites.net/sheeeeee
 
 
